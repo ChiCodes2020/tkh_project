@@ -59,19 +59,8 @@ def other_route():
 @app.route('/api', methods=['GET'])
 def api_route():
     table = TweetTable.query.all()
-    d = []
-    for row in table:
-        row_as_dict ={
-            "tweet": row.tweets,
-            "likes": row.likes,
-        }
-        d.append(row_as_dict)
-    return d
-
-
-    # table = TweetTable.query.all()
-    # d = {row.tweets:row.likes for row in table}
-    # return jsonify(d)
+    d = {row.tweets:row.likes for row in table}
+    return jsonify(d)
 
 
 # @app.route('/api', methods=['POST'])
