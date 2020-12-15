@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Dr. Thema Tweets</h1> <br>
+<div>
+   {% for row in data %}
+   <div>
+    <p>{{row}}</p>
+    
+   </div>
+
+   {% endfor %}
+</div>
+{% endblock %}

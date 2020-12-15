@@ -44,29 +44,37 @@ def index():
 
 # include other views that return html here:
 @app.route('/other')
-def other():
-    return render_template('other.html')
+def other_route():
+    table = TweetTable.query.all()
+    d = []
+    for row in table:
+        row_as_dict ={
+            "tweet": row.tweets,
+            "likes": row.likes,
+        }
+        d.append(row_as_dict)
+    return render_template('other.html', data = d)
 
 
 @app.route('/api', methods=['GET'])
-def get_data():
+def api_route():
     table = TweetTable.query.all()
     d = {row.tweets:row.likes for row in table}
     return jsonify(d)
 
 
-@app.route('/api', methods=['POST'])
-def add_data():
-    for k,v in request.args.items():
-        pass
-    return jsonify({})
+# @app.route('/api', methods=['POST'])
+# def add_data():
+#     for k,v in request.args.items():
+#         pass
+#     return jsonify({})
         
-# change this to allow the deletion of data
-@app.route('/api', methods=['DELETE'])
-def delete_data():
-    for k,v in request.args.items():
-        pass
-    return jsonify({})
+# # change this to allow the deletion of data
+# @app.route('/api', methods=['DELETE'])
+# def delete_data():
+#     for k,v in request.args.items():
+#         pass
+#     return jsonify({})
 
 
 if __name__ == '__main__':
