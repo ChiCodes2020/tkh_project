@@ -57,7 +57,7 @@ def other_route():
 
 
 @app.route('/api', methods=['GET'])
- def api_route():
+def api_route():
     table = TweetTable.query.all()
     d = []
     for row in table:
@@ -66,7 +66,7 @@ def other_route():
             "likes": row.likes,
         }
         d.append(row_as_dict)
-    return d
+    return jsonify(d)
 
 #     table = TweetTable.query.all()
 #     d = {row.tweets:row.likes for row in table}
