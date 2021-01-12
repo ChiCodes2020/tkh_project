@@ -1,1 +1,1 @@
-# Phase 1 Project: Nitter Tweets & Database
+# Nitter Tweets & Database API
